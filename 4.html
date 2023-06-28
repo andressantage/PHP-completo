@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campuslands</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+	<script src="prism.js"></script>
+</head>
+<body>
+    <h1>MySQL: ejemplo tablas </h1>
+<p></p>
+<pre><code class="language-php">
+    CREATE TABLE pais(
+        idPais int NOT NULL AUTO_INCREMENT,
+        nombrePais varchar(50) NOT NULL,
+        CONSTRAINT pk_pais PRIMARY KEY (idPais)
+    );
+    
+    CREATE TABLE departamento(
+        idDep int NOT NULL AUTO_INCREMENT,
+        nombreDep varchar(50) NOT NULL,
+        idPais int(11),
+        CONSTRAINT pk_departamento PRIMARY KEY (idDep),
+        CONSTRAINT fk PaisDep FOREIGN KEY (idPais) REFERENCES pais(idPais)
+    );
+    
+    CREATE TABLE region(
+        idReg int NOT NULL AUTO_INCREMENT,
+        nombreReg varchar(50) NOT NULL,
+        idDep int(11),
+        CONSTRAINT pk_region PRIMARY KEY (idReg),
+        CONSTRAINT fk_DepRegion FOREIGN KEY (idDep) REFERENCES departamento (idDep)
+    );
+    
+    ALTER TABLE cliente ADD idRegion int(11);
+    ALTER TABLE CLIENTE ADD CONSTRAINT FK_ClienteReg FOREIGN KEY (idRegion) REFERENCES region (idRegion);
+    
+    
+    
+</code></pre>
+<img src="img/t1.PNG" alt="">
+<img src="img/t2.PNG" alt="">
+
+<p>_________________________________________________</p>
+</body>
+</html>
