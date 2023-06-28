@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campuslands</title>
+    <link rel="stylesheet" href="prism.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+	<script src="prism.js"></script>
+</head>
+<body>
+    <h1>PHP: parte 1</h1>
+<p>Correrlo en PHP para observar el resultado de cada ejemplo.</p>
+<pre><code class="language-php">
+
+</code></pre>
+&lt;?php
+    /**
+     * 14) Json_encode y json_decode
+     * 
+     */
+    $productos=[
+        [
+            'nombre'=&gt;'Ricardo ☕',
+            'edad'=&gt;21
+        ]
+    ];
+    echo "La estructura array de datos&lt;br&gt;";
+    echo "&lt;pre&gt;";
+    var_dump($productos);
+    echo "&lt;/pre&gt;";
+
+    $json=json_encode($productos); //convierte una estructura de datos en PHP en una cadena JSON
+    echo "Cadena de json convertida (de array a json)&lt;br&gt;";
+    //aqui no sale el caracter de la tasa por ser CARACTER UNICODE revisar mas abajo encontrara la solucion al problema
+    echo "&lt;pre&gt;";
+    var_dump($json);
+    echo "&lt;/pre&gt;";
+
+    $objeto=json_decode($json); //convierte una cadena JSON en una estructura de datos de PHP
+    //se usa $json=json_decode($json) para retornar un objeto PHP
+    echo "Cadena de json convertida (de json a objeto)&lt;br&gt;";
+    echo "&lt;pre&gt;";
+    var_dump($objeto);
+    echo "&lt;/pre&gt;";
+    //se puede acceder a un atributo del objeto:
+    echo "&lt;pre&gt;";
+    var_dump($objeto[0]-&gt;nombre);
+    echo "&lt;/pre&gt;";
+
+    echo "Cadena de json convertida (de json a array)&lt;br&gt;";
+    echo "&lt;pre&gt;";
+    var_dump(json_decode($json,true)); //asi es para que retorne un arreglo asociativo
+    echo "&lt;/pre&gt;";
+
+    echo "Cadena de json convertida (completo con JSON_UNESCAPED_UNICODE)&lt;br&gt;";
+    //se usa para caracteres expeciales de UNICODE como ☕
+    echo "&lt;pre&gt;";
+    var_dump(json_encode($productos,JSON_UNESCAPED_UNICODE));//asi se usar cuando los caracteres Unicode se mantienen sin escapar en la cadena JSON final
+    echo "&lt;/pre&gt;";
+?&gt;
+<p>_________________________________________________</p>
+</body>
+</html>
